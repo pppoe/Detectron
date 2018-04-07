@@ -128,7 +128,7 @@ def vis_class(img, pos, class_str, font_scale=0.35):
     return img
 
 
-def vis_bbox(img, bbox, thick=1):
+def vis_bbox(img, bbox, thick=3):
     """Visualizes a bounding box."""
     (x0, y0, w, h) = bbox
     x1, y1 = int(x0 + w), int(y0 + h)
@@ -137,7 +137,7 @@ def vis_bbox(img, bbox, thick=1):
     return img
 
 
-def vis_keypoints(img, kps, kp_thresh=2, alpha=0.7):
+def vis_keypoints(img, kps, kp_thresh=2, alpha=0.7, thick=3):
     """Visualizes keypoints (adapted from vis_one_image).
     kps has shape (4, #keypoints) where 4 rows are (x, y, logit, prob).
     """
@@ -166,14 +166,16 @@ def vis_keypoints(img, kps, kp_thresh=2, alpha=0.7):
         kps[2, dataset_keypoints.index('right_hip')],
         kps[2, dataset_keypoints.index('left_hip')])
     nose_idx = dataset_keypoints.index('nose')
+    mid_shoulder = [int(v) for v in mid_shoulder]
+    mid_hip = [int(v) for v in mid_hip]
     if sc_mid_shoulder > kp_thresh and kps[2, nose_idx] > kp_thresh:
         cv2.line(
             kp_mask, tuple(mid_shoulder), tuple(kps[:2, nose_idx]),
-            color=colors[len(kp_lines)], thickness=2, lineType=cv2.LINE_AA)
+            color=colors[len(kp_lines)], thickness=thick, lineType=cv2.LINE_AA)
     if sc_mid_shoulder > kp_thresh and sc_mid_hip > kp_thresh:
         cv2.line(
             kp_mask, tuple(mid_shoulder), tuple(mid_hip),
-            color=colors[len(kp_lines) + 1], thickness=2, lineType=cv2.LINE_AA)
+            color=colors[len(kp_lines) + 1], thickness=thick, lineType=cv2.LINE_AA)
 
     # Draw the keypoints.
     for l in range(len(kp_lines)):
@@ -184,7 +186,7 @@ def vis_keypoints(img, kps, kp_thresh=2, alpha=0.7):
         if kps[2, i1] > kp_thresh and kps[2, i2] > kp_thresh:
             cv2.line(
                 kp_mask, p1, p2,
-                color=colors[l], thickness=2, lineType=cv2.LINE_AA)
+                color=colors[l], thickness=thick, lineType=cv2.LINE_AA)
         if kps[2, i1] > kp_thresh:
             cv2.circle(
                 kp_mask, p1,
