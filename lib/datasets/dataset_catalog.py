@@ -68,11 +68,23 @@ DATASETS = {
         ANN_FN:
             _DATA_DIR + '/coco/annotations/instances_train2014.json'
     },
+    'coco_2017_train': {
+        IM_DIR:
+            _DATA_DIR + '/coco/train2017',
+        ANN_FN:
+            _DATA_DIR + '/coco/annotations/instances_train2017.json'
+    },
     'coco_2014_val': {
         IM_DIR:
             _DATA_DIR + '/coco/coco_val2014',
         ANN_FN:
             _DATA_DIR + '/coco/annotations/instances_val2014.json'
+    },
+    'coco_2017_val': {
+        IM_DIR:
+            _DATA_DIR + '/coco/val2017',
+        ANN_FN:
+            _DATA_DIR + '/coco/annotations/instances_val2017.json'
     },
     'coco_2014_minival': {
         IM_DIR:
@@ -125,6 +137,18 @@ DATASETS = {
             _DATA_DIR + '/coco/coco_val2014',
         ANN_FN:
             _DATA_DIR + '/coco/annotations/coco_stuff_val.json'
+    },
+    'keypoints_coco_2017_train': {
+        IM_DIR:
+            _DATA_DIR + '/coco/train2017',
+        ANN_FN:
+            _DATA_DIR + '/coco/annotations/person_keypoints_train2017.json'
+    },
+    'keypoints_coco_2017_val': {
+        IM_DIR:
+            _DATA_DIR + '/coco/val2017',
+        ANN_FN:
+            _DATA_DIR + '/coco/annotations/person_keypoints_val2017.json'
     },
     'keypoints_coco_2014_train': {
         IM_DIR:
